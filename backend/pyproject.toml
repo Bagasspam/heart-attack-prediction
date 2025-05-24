@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "heart-attack-detection"
+version = "0.1.0"
+description = ""
+authors = ["your-name <blithesrm102@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+Flask = "^2.1.2"
+pandas = "^1.4.2"
+scikit-learn = "^1.0.2"
+flask-cors = "^5.0.0"
+gunicorn = "^20.1.0"
+
+[tool.poetry.dev-dependencies]
