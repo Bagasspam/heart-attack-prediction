@@ -1,246 +1,53 @@
-"use client";
-import { useState, FormEvent } from "react";
-import axios from "axios";
+// app/home/page.tsx
+import React from "react";
+import Link from "next/link";
 
-export default function Home() {
-  const [formData, setFormData] = useState({
-    age: "",
-    gender: "",
-    heartRate: "",
-    systolic: "",
-    diastolic: "",
-    bloodSugar: "",
-    ckmb: "",
-    troponin: "",
-  });
-  const [prediction, setPrediction] = useState("");
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    const updatedData = {
-      ...formData,
-      heartRate: parseFloat(formData.heartRate),
-      systolic: parseFloat(formData.systolic),
-      diastolic: parseFloat(formData.diastolic),
-      bloodSugar: parseFloat(formData.bloodSugar),
-      ckmb: parseFloat(formData.ckmb),
-      troponin: parseFloat(formData.troponin),
-    };
-
-    console.log("Form Submitted", updatedData); // Verifikasi data yang dikirim
-    try {
-      const response = await axios.post(
-        "https://heart-attack-prediction-1lv1.onrender.com/predict",
-        updatedData
-      );
-      console.log("Prediction Result:", response.data.result);
-      setPrediction(response.data.result);
-    } catch (error) {
-      console.error("Error during prediction!", error);
-    }
-  };
-
+const Home = () => {
   return (
-    <div className="min-h-screen bg-gray-800 text-white flex flex-col justify-center items-center py-8">
-      <h1 className="text-4xl font-semibold text-blue-400 mb-8">
-        Heart Attack Prediction
-      </h1>
-      <form
-        onSubmit={handleSubmit}
-        className="bg-gray-900 p-8 rounded-lg shadow-lg w-full max-w-md"
-      >
-        {/* Age Input */}
-        <div className="mb-4">
-          <label
-            htmlFor="age"
-            className="block text-sm font-medium text-gray-200"
-          >
-            Age
-          </label>
-          <input
-            type="number" // Menangani angka
-            name="age"
-            placeholder="Age"
-            value={formData.age}
-            onChange={(e) => setFormData({ ...formData, age: e.target.value })}
-            className="w-full p-3 mt-2 border border-gray-600 rounded-lg bg-gray-700 text-white"
-            required
-          />
-        </div>
+    <div className="w-full h-screen bg-gray-800 text-white p-10 flex flex-col items-center justify-center">
+      <div className="w-1/2">
+        <h1 className="text-6xl font-bold mb-12 text-center text-orange-500">
+          Welcome to Heart Attack Prediction App
+        </h1>
 
-        {/* Gender Input */}
-        <div className="mb-4">
-          <label
-            htmlFor="gender"
-            className="block text-sm font-medium text-gray-200"
-          >
-            Gender
-          </label>
-          <select
-            name="gender"
-            value={formData.gender}
-            onChange={(e) =>
-              setFormData({ ...formData, gender: e.target.value })
-            }
-            className="w-full p-3 mt-2 border border-gray-600 rounded-lg bg-gray-700 text-white"
-            required
-          >
-            <option value="" disabled>
-              Select Gender
-            </option>
-            <option value="0">Female</option>
-            <option value="1">Male</option>
-          </select>
-        </div>
-
-        {/* Heart Rate Input */}
-        <div className="mb-4">
-          <label
-            htmlFor="heartRate"
-            className="block text-sm font-medium text-gray-200"
-          >
-            Heart Rate
-          </label>
-          <input
-            type="number" // Menangani angka
-            name="heartRate"
-            placeholder="Heart Rate"
-            value={formData.heartRate}
-            onChange={(e) =>
-              setFormData({ ...formData, heartRate: e.target.value })
-            }
-            className="w-full p-3 mt-2 border border-gray-600 rounded-lg bg-gray-700 text-white"
-            required
-            min="0"
-            step="any" // Memungkinkan desimal
-          />
-        </div>
-
-        {/* Systolic Blood Pressure Input */}
-        <div className="mb-4">
-          <label
-            htmlFor="systolic"
-            className="block text-sm font-medium text-gray-200"
-          >
-            Systolic Blood Pressure
-          </label>
-          <input
-            type="number" // Menangani angka
-            name="systolic"
-            placeholder="Systolic Blood Pressure"
-            value={formData.systolic}
-            onChange={(e) =>
-              setFormData({ ...formData, systolic: e.target.value })
-            }
-            className="w-full p-3 mt-2 border border-gray-600 rounded-lg bg-gray-700 text-white"
-            required
-            min="0"
-            step="any" // Memungkinkan desimal
-          />
-        </div>
-
-        {/* Diastolic Blood Pressure Input */}
-        <div className="mb-4">
-          <label
-            htmlFor="diastolic"
-            className="block text-sm font-medium text-gray-200"
-          >
-            Diastolic Blood Pressure
-          </label>
-          <input
-            type="number" // Menangani angka
-            name="diastolic"
-            placeholder="Diastolic Blood Pressure"
-            value={formData.diastolic}
-            onChange={(e) =>
-              setFormData({ ...formData, diastolic: e.target.value })
-            }
-            className="w-full p-3 mt-2 border border-gray-600 rounded-lg bg-gray-700 text-white"
-            required
-            min="0"
-            step="any" // Memungkinkan desimal
-          />
-        </div>
-
-        {/* Blood Sugar Input */}
-        <div className="mb-4">
-          <label
-            htmlFor="bloodSugar"
-            className="block text-sm font-medium text-gray-200"
-          >
-            Blood Sugar
-          </label>
-          <input
-            type="number" // Menangani angka
-            name="bloodSugar"
-            placeholder="Blood Sugar"
-            value={formData.bloodSugar}
-            onChange={(e) =>
-              setFormData({ ...formData, bloodSugar: e.target.value })
-            }
-            className="w-full p-3 mt-2 border border-gray-600 rounded-lg bg-gray-700 text-white"
-            required
-            min="0"
-            step="any" // Memungkinkan desimal
-          />
-        </div>
-
-        {/* CK-MB Input */}
-        <div className="mb-4">
-          <label
-            htmlFor="ckmb"
-            className="block text-sm font-medium text-gray-200"
-          >
-            CK-MB
-          </label>
-          <input
-            type="number" // Menangani angka
-            name="ckmb"
-            placeholder="CK-MB"
-            value={formData.ckmb}
-            onChange={(e) => setFormData({ ...formData, ckmb: e.target.value })}
-            className="w-full p-3 mt-2 border border-gray-600 rounded-lg bg-gray-700 text-white"
-            required
-            min="0"
-            step="any" // Memungkinkan desimal
-          />
-        </div>
-
-        {/* Troponin Input */}
-        <div className="mb-6">
-          <label
-            htmlFor="troponin"
-            className="block text-sm font-medium text-gray-200"
-          >
-            Troponin
-          </label>
-          <input
-            type="number" // Menangani angka
-            name="troponin"
-            placeholder="Troponin"
-            value={formData.troponin}
-            onChange={(e) =>
-              setFormData({ ...formData, troponin: e.target.value })
-            }
-            className="w-full p-3 mt-2 border border-gray-600 rounded-lg bg-gray-700 text-white"
-            required
-            min="0"
-            step="any" // Memungkinkan desimal
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="w-full p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-        >
-          Predict
-        </button>
-      </form>
-      {prediction && (
-        <p className="text-center mt-4 text-lg font-semibold text-green-400">
-          Prediction: {prediction}
+        <p className="text-xl mb-6 text-justify">
+          This application helps predict the risk of heart attacks based on your
+          health parameters. With the help of advanced machine learning models,
+          it provides valuable insights to take better care of your heart
+          health.
         </p>
-      )}
+
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-semibold text-orange-400 mb-4">
+            How It Works
+          </h2>
+          <p className="text-xl mb-6">
+            To get started, enter your health data (age, blood pressure, heart
+            rate, etc.) into the prediction form and get an estimate of your
+            heart attack risk.
+          </p>
+          <Link
+            href="/predict"
+            className="bg-orange-600 hover:bg-orange-500 text-white text-xl font-bold px-8 py-5 rounded-md"
+          >
+            Start Prediction Now
+          </Link>
+        </div>
+
+        <div className="max-w-4xl mx-auto mt-10 text-center">
+          <h3 className="text-2xl font-semibold text-orange-400 mb-4">
+            Why Use This App?
+          </h3>
+          <ul className="list-disc pl-8 text-xl">
+            <li>Quick, easy-to-use interface</li>
+            <li>Accurate risk prediction based on your health data</li>
+            <li>Helps raise awareness about heart health</li>
+            <li>Provides actionable insights for better lifestyle decisions</li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
-}
+};
+
+export default Home;

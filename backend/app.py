@@ -12,7 +12,7 @@ app = Flask(__name__)
 CORS(app, resources={r"/predict": {"origins": "*"}})
 
 # Load dataset dan latih model
-df = pd.read_csv('Medicaldataset.csv')
+df = pd.read_csv('Medicaldataset_cleaned_final.csv')
 
 label_encoder = LabelEncoder()
 df['Result_encoded'] = label_encoder.fit_transform(df['Result'])
