@@ -14,7 +14,6 @@ export default function Predict() {
     ckmb: "",
     troponin: "",
   });
-  const [prediction, setPrediction] = useState("");
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -36,7 +35,6 @@ export default function Predict() {
         updatedData
       );
       console.log("Prediction Result:", response.data.result);
-      setPrediction(response.data.result);
 
       // Menampilkan SweetAlert2 dengan warna yang sesuai berdasarkan hasil prediksi
       if (response.data.result === "positive") {
