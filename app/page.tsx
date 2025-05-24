@@ -30,7 +30,7 @@ export default function Home() {
     console.log("Form Submitted", updatedData); // Verifikasi data yang dikirim
     try {
       const response = await axios.post(
-        "http://localhost:5000/predict",
+        "https://heart-attack-prediction-1lv1.onrender.com/predict",
         updatedData
       );
       console.log("Prediction Result:", response.data.result);
