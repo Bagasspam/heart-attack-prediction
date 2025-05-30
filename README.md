@@ -23,10 +23,10 @@ This app leverages **data science** and **machine learning** to predict the like
 
 Meet the awesome team behind this project:
 
-- **Habib**
-- **Fiona**
-- **Bagas**
-- **Wafiq**
+- **Habib Al Hafiizh Ramadhan (163231033)**
+- **Fiona Metta Jauhari (163231057)**
+- **Bagas Pamungkas (163231007)**
+- **Wafiq Gifari Putra Yudha (163231063)**
 
 Each team member contributed their expertise and effort to make this project a success.
 
