@@ -1,15 +1,15 @@
-## Heart Attack Prediction
+# Heart Attack Prediction
 
-# Tentang
+## Tentang
 
 
-# Anggota
+## Anggota
 -Habib
 -Fiona
 -Bagas
 -Wafiq
 
-# Dataset
+## Dataset
 
-# Website
+## Website
 
