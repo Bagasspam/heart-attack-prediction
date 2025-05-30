@@ -2,9 +2,9 @@ import React from "react";
 
 const About = () => {
   return (
-    <div className="mt-10 md:mt-0 w-full min-h-screen bg-gray-800 text-white p-6 flex flex-col items-center justify-center">
+    <div className="mt-0 md:mt-0 w-full min-h-screen bg-gray-800 text-white p-6 flex flex-col items-center justify-center">
       <div className="w-full md:w-3/4 lg:w-1/2">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4 mt-8 text-center text-orange-500">
+        <h1 className="text-4xl md:text-6xl font-bold mb-4 mt-0 text-center text-orange-500">
           About Heart Attack Prediction App
         </h1>
 

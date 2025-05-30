@@ -4,7 +4,7 @@ const HowToUse = () => {
   return (
     <div className="w-full min-h-screen bg-gray-800 text-white p-6 flex flex-col items-center justify-center">
       <div className="w-full md:w-3/4 lg:w-1/2">
-        <h1 className="text-4xl md:text-6xl font-bold text-center text-orange-500 mt-8 mb-4">
+        <h1 className="text-4xl md:text-6xl pt-8 font-bold text-center text-orange-500 mt-8 mb-4">
           How to Use
         </h1>
 

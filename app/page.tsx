@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div className="mt-1 md:mt-0 w-full min-h-screen bg-gray-800 text-white p-6 flex flex-col items-center justify-center">
       <div className="w-full md:w-1/2">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4 text-center text-orange-500">
+        <h1 className="text-4xl md:text-6xl font-bold mb-4 mt-14 text-center text-orange-500">
           Welcome to Heart Attack Prediction App
         </h1>
 
