@@ -1,36 +1,36 @@
 "use client";
+
 import { useState, FormEvent } from "react";
 import axios from "axios";
 import Swal from "sweetalert2"; // Import SweetAlert2
 
 export default function Predict() {
   const [formData, setFormData] = useState({
-    age: "",
-    gender: "",
-    heartRate: "",
-    systolic: "",
-    diastolic: "",
-    bloodSugar: "",
-    ckmb: "",
-    troponin: "",
+    age: 30,
+    gender: "0", // Default Female
+    heartRate: 70,
+    systolic: 120,
+    diastolic: 80,
+    bloodSugar: 100,
+    ckmb: 10,
+    troponin: 0.1,
   });
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const updatedData = {
       ...formData,
-      heartRate: parseFloat(formData.heartRate),
-      systolic: parseFloat(formData.systolic),
-      diastolic: parseFloat(formData.diastolic),
-      bloodSugar: parseFloat(formData.bloodSugar),
-      ckmb: parseFloat(formData.ckmb),
-      troponin: parseFloat(formData.troponin),
+      heartRate: parseFloat(formData.heartRate.toString()),
+      systolic: parseFloat(formData.systolic.toString()),
+      diastolic: parseFloat(formData.diastolic.toString()),
+      bloodSugar: parseFloat(formData.bloodSugar.toString()),
+      ckmb: parseFloat(formData.ckmb.toString()),
+      troponin: parseFloat(formData.troponin.toString()),
     };
 
     console.log("Form Submitted", updatedData); // Verifikasi data yang dikirim
     try {
       const response = await axios.post(
-        // "http://localhost:5000/predict", // Ganti dengan URL endpoint API Anda
         "https://heart-attack-prediction-1lv1.onrender.com/predict",
         updatedData
       );
@@ -54,7 +54,7 @@ export default function Predict() {
           title: "Negative, No Risk Detected",
           text: "You are at low risk of a heart attack. Keep maintaining a healthy lifestyle!",
           icon: "success",
-          background: "#374151", // Merah untuk hasil negatif
+          background: "#374151",
           confirmButtonText: "Okay!",
           customClass: {
             popup: "text-white", // Menambahkan kelas CSS untuk mengubah warna teks menjadi putih
@@ -74,48 +74,52 @@ export default function Predict() {
     }
   };
 
+  // Handler to update form data when slider is changed
+  const handleSliderChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: string
+  ) => {
+    setFormData({ ...formData, [field]: e.target.value });
+  };
+
   return (
-    <div className="min-h-screen bg-gray-800 text-white flex flex-row justify-center items-center">
-      <div className="flex-1 w-55 flex flex-col">
-        <h1 className="text-8xl text-right font-bold text-orange-500 mb-4">
+    <div className="mt-10 md:mt-0 min-h-screen bg-gray-800 text-white flex flex-col items-center justify-center p-6">
+      <div className="w-full md:w-3/4 lg:w-1/2">
+        <h1 className="text-4xl md:text-6xl font-bold pt-6 mb-4 text-center text-orange-500">
           Heart Attack Prediction
         </h1>
 
-        <p className="text-2xl text-right font-bold text-gray-300 mb-4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
-          temporibus dolorum similique accusamus velit quidem architecto magnam
-          quasi quod ipsum placeat blanditiis voluptatem, inventore et quos
-          repudiandae vitae exercitationem totam?
+        <p className="text-md md:text-lg text-justify font-bold text-gray-300 mb-4">
+          Disclaimer: The predictions provided by this app are based on data
+          input and machine learning models. This tool is not intended to
+          replace professional medical advice, diagnosis, or treatment. Always
+          consult with a healthcare provider for a comprehensive evaluation and
+          personalized medical guidance{" "}
         </p>
-      </div>
 
-      <div className="flex-1  flex flex-col justify-center items-center ">
+        {/* Grid Layout untuk Formulir */}
         <form
           onSubmit={handleSubmit}
-          className="bg-gray-900 p-8 rounded-lg shadow-lg w-full max-w-md"
+          className="bg-gray-900 p-8 rounded-lg shadow-lg w-full max-w-lg mx-auto grid grid-cols-1 md:grid-cols-2 gap-6"
         >
-          {/* Age Input */}
+          {/* Age Input (Slider) */}
           <div className="mb-4">
             <label
               htmlFor="age"
               className="block text-sm font-medium text-gray-200"
             >
-              Age
+              Age: {formData.age}
             </label>
             <input
-              type="number" // Menangani angka
-              name="age"
-              placeholder="Age"
+              type="range"
+              min="0"
+              max="100"
               value={formData.age}
-              onChange={(e) =>
-                setFormData({ ...formData, age: e.target.value })
-              }
-              className="w-full p-3 mt-2 border border-gray-600 rounded-lg bg-gray-700 text-white"
-              required
+              onChange={(e) => handleSliderChange(e, "age")}
+              className="w-full"
             />
           </div>
-
-          {/* Gender Input */}
+          {/* Gender Input (Slider is not applicable here, so keep dropdown) */}
           <div className="mb-4">
             <label
               htmlFor="gender"
@@ -132,158 +136,124 @@ export default function Predict() {
               className="w-full p-3 mt-2 border border-gray-600 rounded-lg bg-gray-700 text-white"
               required
             >
-              <option value="" disabled>
-                Select Gender
-              </option>
               <option value="0">Female</option>
               <option value="1">Male</option>
             </select>
           </div>
-
-          {/* Heart Rate Input */}
+          {/* Heart Rate Input (Slider) */}
           <div className="mb-4">
             <label
               htmlFor="heartRate"
               className="block text-sm font-medium text-gray-200"
             >
-              Heart Rate
+              Heart Rate: {formData.heartRate}
             </label>
             <input
-              type="number" // Menangani angka
-              name="heartRate"
-              placeholder="Heart Rate"
+              type="range"
+              min="20"
+              max="140"
               value={formData.heartRate}
-              onChange={(e) =>
-                setFormData({ ...formData, heartRate: e.target.value })
-              }
-              className="w-full p-3 mt-2 border border-gray-600 rounded-lg bg-gray-700 text-white"
-              required
-              min="0"
-              step="any" // Memungkinkan desimal
+              onChange={(e) => handleSliderChange(e, "heartRate")}
+              className="w-full"
             />
           </div>
-
-          {/* Systolic Blood Pressure Input */}
+          {/* Systolic Blood Pressure Input (Slider) */}
           <div className="mb-4">
             <label
               htmlFor="systolic"
               className="block text-sm font-medium text-gray-200"
             >
-              Systolic Blood Pressure
+              Systolic Blood Pressure: {formData.systolic}
             </label>
             <input
-              type="number" // Menangani angka
-              name="systolic"
-              placeholder="Systolic Blood Pressure"
+              type="range"
+              min="60"
+              max="230"
               value={formData.systolic}
-              onChange={(e) =>
-                setFormData({ ...formData, systolic: e.target.value })
-              }
-              className="w-full p-3 mt-2 border border-gray-600 rounded-lg bg-gray-700 text-white"
-              required
-              min="0"
-              step="any" // Memungkinkan desimal
+              onChange={(e) => handleSliderChange(e, "systolic")}
+              className="w-full"
             />
           </div>
-
-          {/* Diastolic Blood Pressure Input */}
+          {/* Diastolic Blood Pressure Input (Slider) */}
           <div className="mb-4">
             <label
               htmlFor="diastolic"
               className="block text-sm font-medium text-gray-200"
             >
-              Diastolic Blood Pressure
+              Diastolic Blood Pressure: {formData.diastolic}
             </label>
             <input
-              type="number" // Menangani angka
-              name="diastolic"
-              placeholder="Diastolic Blood Pressure"
+              type="range"
+              min="40"
+              max="120"
               value={formData.diastolic}
-              onChange={(e) =>
-                setFormData({ ...formData, diastolic: e.target.value })
-              }
-              className="w-full p-3 mt-2 border border-gray-600 rounded-lg bg-gray-700 text-white"
-              required
-              min="0"
-              step="any" // Memungkinkan desimal
+              onChange={(e) => handleSliderChange(e, "diastolic")}
+              className="w-full"
             />
           </div>
-
-          {/* Blood Sugar Input */}
+          {/* Blood Sugar Input (Slider) */}
           <div className="mb-4">
             <label
               htmlFor="bloodSugar"
               className="block text-sm font-medium text-gray-200"
             >
-              Blood Sugar
+              Blood Sugar: {formData.bloodSugar}
             </label>
             <input
-              type="number" // Menangani angka
-              name="bloodSugar"
-              placeholder="Blood Sugar"
+              type="range"
+              min="40"
+              max="425"
               value={formData.bloodSugar}
-              onChange={(e) =>
-                setFormData({ ...formData, bloodSugar: e.target.value })
-              }
-              className="w-full p-3 mt-2 border border-gray-600 rounded-lg bg-gray-700 text-white"
-              required
-              min="0"
-              step="any" // Memungkinkan desimal
+              onChange={(e) => handleSliderChange(e, "bloodSugar")}
+              className="w-full"
             />
           </div>
-
-          {/* CK-MB Input */}
+          {/* CK-MB Input (Slider) */}
           <div className="mb-4">
             <label
               htmlFor="ckmb"
               className="block text-sm font-medium text-gray-200"
             >
-              CK-MB
+              CK-MB: {formData.ckmb}
             </label>
             <input
-              type="number" // Menangani angka
-              name="ckmb"
-              placeholder="CK-MB"
-              value={formData.ckmb}
-              onChange={(e) =>
-                setFormData({ ...formData, ckmb: e.target.value })
-              }
-              className="w-full p-3 mt-2 border border-gray-600 rounded-lg bg-gray-700 text-white"
-              required
+              type="range"
               min="0"
-              step="any" // Memungkinkan desimal
+              max="10"
+              step="0.01"
+              value={formData.ckmb}
+              onChange={(e) => handleSliderChange(e, "ckmb")}
+              className="w-full"
             />
           </div>
-
-          {/* Troponin Input */}
+          {/* Troponin Input (Slider) */}
           <div className="mb-6">
             <label
               htmlFor="troponin"
               className="block text-sm font-medium text-gray-200"
             >
-              Troponin
+              Troponin: {formData.troponin}
             </label>
             <input
-              type="number" // Menangani angka
-              name="troponin"
-              placeholder="Troponin"
-              value={formData.troponin}
-              onChange={(e) =>
-                setFormData({ ...formData, troponin: e.target.value })
-              }
-              className="w-full p-3 mt-2 border border-gray-600 rounded-lg bg-gray-700 text-white"
-              required
+              type="range"
               min="0"
-              step="any" // Memungkinkan desimal
+              max="0.04"
+              step="0.001"
+              value={formData.troponin}
+              onChange={(e) => handleSliderChange(e, "troponin")}
+              className="w-full"
             />
+          </div>{" "}
+          <div className="md:col-span-2">
+            {" "}
+            {/* Tombol akan mengambil 2 kolom di layar desktop */}
+            <button
+              type="submit"
+              className="w-full p-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700"
+            >
+              Predict
+            </button>
           </div>
-
-          <button
-            type="submit"
-            className="w-full p-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700"
-          >
-            Predict
-          </button>
         </form>
       </div>
     </div>

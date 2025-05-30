@@ -1,32 +1,25 @@
-// app/about.tsx
 import React from "react";
 
 const About = () => {
   return (
-    <div className="w-full flex flex-col justify center items-center items-center h-screen bg-gray-800 text-white p-10">
-      <div className="w-1/2 my-auto">
-        <h1 className="text-6xl font-bold mb-12 text-center text-orange-500">
+    <div className="mt-10 md:mt-0 w-full min-h-screen bg-gray-800 text-white p-6 flex flex-col items-center justify-center">
+      <div className="w-full md:w-3/4 lg:w-1/2">
+        <h1 className="text-4xl md:text-6xl font-bold mb-4 mt-8 text-center text-orange-500">
           About Heart Attack Prediction App
         </h1>
+
         <div className="max-w-4xl mx-auto text-justify">
-          <p className="text-xl mx-6 mb-6">
-            The goal of this application is to make heart health monitoring
-            easier and more accessible for everyone. By leveraging the power of
-            data and machine learning, we aim to empower individuals to make
+          <p className="text-lg md:text-xl mx-6 mb-3">
+            The goal of this app is to make heart health monitoring more
+            accessible and easier for everyone. By leveraging the power of data
+            and machine learning, we aim to empower individuals to make more
             informed decisions about their health.
           </p>
-          <p className="text-xl mx-6">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis,
-            libero dolore? Dolores saepe deleniti ea neque nam maxime ipsum,
-            numquam molestiae excepturi similique, exercitationem nemo assumenda
-            laudantium est minima doloribus. Tempore saepe deleniti, animi modi
-            numquam natus amet ut, ea eveniet, provident iure libero ipsam
-            molestiae quibusdam eligendi sunt quam quae reiciendis veniam quasi
-            nam quas? Voluptas esse ratione doloribus aperiam illo beatae itaque
-            sequi cumque commodi, eius nulla doloremque nam ab in natus veniam
-            nobis officia, error explicabo? Laborum, eveniet vero dolor quas in
-            illum veniam! Blanditiis, quae earum quasi unde fugiat porro dolor,
-            consectetur exercitationem, sunt laudantium esse!
+          <p className="text-lg md:text-xl mx-6">
+            With this app, you can easily predict your heart attack risk based
+            on your health data, such as blood pressure, age, and other risk
+            factors. We focus on simplicity and reliable results, helping you
+            take proactive steps to maintain a healthy heart.
           </p>
         </div>
       </div>

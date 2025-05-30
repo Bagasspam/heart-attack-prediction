@@ -1,4 +1,3 @@
-// app/layout.tsx (Root Layout)
 import React from "react";
 import Navbar from "./components/Navbar"; // Impor Navbar
 import { Geist, Geist_Mono } from "next/font/google"; // Menggunakan font dari Google
@@ -29,14 +28,14 @@ export default function RootLayout({
         style={{ margin: 0 }}
       >
         {/* Navbar tetap di sini untuk setiap halaman */}
-        <div className="flex">
+        <div className="flex flex-col lg:flex-row">
           {/* Sidebar/Navbar dengan lebar 1/4 */}
-          <div className="w-1/4 bg-gray-700 text-white">
+          <div className="lg:w-1/4 w-full bg-gray-700 text-white">
             <Navbar />
           </div>
 
           {/* Konten Utama dengan lebar 3/4 */}
-          <div className="w-3/4">
+          <div className="lg:w-3/4 w-full">
             <main>{children}</main>
           </div>
         </div>
