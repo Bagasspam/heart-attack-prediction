@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Heart Attack Prediction App
 
-## Getting Started
+Welcome to the **Heart Attack Prediction** app! This application uses machine learning to predict the risk of heart attacks based on various health parameters. Our goal is to provide an easy-to-use platform for individuals to understand their health risks and take proactive steps to improve heart health.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Table of Contents
+1. [About](#about)
+2. [Team Members](#team-members)
+3. [Dataset](#dataset)
+4. [Google Colab](#google-colab)
+5. [Website](#website)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## About
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This app leverages **data science** and **machine learning** to predict the likelihood of a heart attack. By inputting health parameters such as age, heart rate, blood pressure, and more, users can get valuable insights into their heart health. The app uses a **predictive model** trained on a dataset to make these predictions.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Team Members
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Meet the awesome team behind this project:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Habib Al Hafiizh Ramadhan (163231033)**
+- **Fiona Metta Jauhari (163231057)**
+- **Bagas Pamungkas (163231007)**
+- **Wafiq Gifari Putra Yudha (163231063)**
 
-## Deploy on Vercel
+Each team member contributed their expertise and effort to make this project a success.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Dataset
+
+The dataset used for training the machine learning model can be found on [Kaggle](https://www.kaggle.com/datasets/fatemehmohammadinia/heart-attack-dataset-tarik-a-rashid). It contains various health parameters and is used to predict the likelihood of a heart attack.
+
+- **Dataset Link**: [Heart Attack Dataset on Kaggle](https://www.kaggle.com/datasets/fatemehmohammadinia/heart-attack-dataset-tarik-a-rashid)
+
+---
+
+## Google Colab
+
+We used **Google Colab** for data exploration, model training, and testing. You can access our project notebook and experiments on Google Colab. Feel free to explore the code and contribute!
+- **Google Colab**: [Heart Attack Prediction on Google Colab](https://colab.research.google.com/drive/1gcY_awFeEJ82XsVnm6XrGeHKWgKGbIdp?usp=sharing)
+---
+
+## Website
+
+The web version of the Heart Attack Prediction app is live! You can try out the prediction model and check your heart attack risk directly on our website.
+
+- **Website**: [Heart Attack Prediction App](https://heart-attack-prediction-kappa.vercel.app/)
+
+---
+
+## License
+
+This project is open-source. You can use, modify, and contribute to this project under the MIT License.
+
+---
+
+## Thank You
+
+Thank you for visiting our Heart Attack Prediction app! Stay healthy and take care of your heart!
